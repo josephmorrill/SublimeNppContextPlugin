@@ -1,0 +1,31 @@
+[
+	{
+		"id": "preferences",
+		"children":
+		[
+			{
+				"caption": "Package Settings",
+				"id": "package-settings",
+				"children":
+				[
+					{
+						"caption": "Notepad++ Context",
+						"children":
+						[
+							{
+								"caption": "Settings – Default",
+								"command": "open_file",
+								"args": { "file": "${packages}/Compare Side-By-Side/SublimeNppContextPlugin.sublime-settings" }
+							},
+							{
+								"caption": "Settings – User",
+								"command": "open_file",
+								"args": { "file": "${packages}/User/SublimeNppContextPlugin.sublime-settings" }
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]
