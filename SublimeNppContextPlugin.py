@@ -126,8 +126,10 @@ class NppcOpenDefaultViewerCommand( NppcPluginTextCommand ):
 		if currentFilePath:
 			if os.name == "nt":
 				os.startfile( currentFilePath, "open" )
-			else:
+			elif sys.platform == "darwin":
 				subprocess.check_call( [ "open", currentFilePath ] )
+			else:
+				subprocess.check_call( [ "xdg-open", currentFilePath ] )
 
 	def is_enabled( self ):
 		return ( self.view.file_name() is not None )
