@@ -2,7 +2,7 @@
 	{ "caption" : "-" },
 	{
 		"caption" : "Close Tabs to the Left",
-		"command" : "close_tabs_left"
+		"command" : "nppc_close_tabs_left"
 	},
 	{
 		"caption" : "Save",

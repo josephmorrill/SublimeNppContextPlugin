@@ -1,22 +1,27 @@
 {
-	"posix": {
-		"linux": {
-			"file_explorer": [ "xdg-open", "<<PATH>>" ],
-			"terminal": "xterm -e \"cd \"<<PATH>>\" && /bin/bash\""
+	"linux" : {
+		"file_explorer" : {
+			"command" : [ "xdg-open", "<<PATH>>" ]
 		},
-		"linux2": {
-			"file_explorer": [ "xdg-open", "<<PATH>>" ],
-			"terminal": "xterm -e \"cd \"<<PATH>>\" && /bin/bash\""
-		},
-		"darwin": {
-			"file_explorer": "open -a \"/Applications/Finder.app\"",
-			"terminal": "open -a \"//Applications/Utilities/Terminal.app\""
+		"terminal" : {
+			"command" : "gnome-terminal --working-directory=\"<<PATH>>\"",
+			"use_shell" : true
 		}
 	},
-	"nt": {
-		"win32": {
-			"file_explorer" : [ "explorer.exe", "<<PATH>>" ],
-			"terminal" : "cmd.exe /K \"cd \"<<PATH>>\"\""
+	"mac" : {
+		"file_explorer" : {
+			"command" : "open -a \"/Applications/Finder.app\" \"<<PATH>>\"",
+		},
+		"terminal" : {
+			"command" : "open -a \"//Applications/Utilities/Terminal.app\" \"<<PATH>>\""
+		}
+	},
+	"windows" : {
+		"file_explorer" : {
+			"command" : [ "explorer.exe", "<<PATH>>" ]
+		},
+		"terminal" : {
+			"command" : "cmd.exe /K \"cd \"<<PATH>>\"\""
 		}
 	}
 }

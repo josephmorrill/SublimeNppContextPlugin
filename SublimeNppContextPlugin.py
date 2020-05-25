@@ -5,18 +5,37 @@ import os
 import sys
 import subprocess
 
-def plugin_loaded():
-	# Check if CloseTabsLeft is installed
-	closeTabsLeftInstalled = False
-	for commandGroup in sublime_plugin.all_command_classes:
-		for commandClass in commandGroup:
-			if commandClass.__name__ == "CloseTabsLeftCommand":
-				closeTabsLeftInstalled = True
-				break;
-		if closeTabsLeftInstalled:
-			break;
-	if not closeTabsLeftInstalled:
-		sublime.status_message( "WARNING: CloseTabsLeft plugin is required for \"Close Tabs to the Left\" tab menu item to work" )
+class NppcCloseTabsLeftCommand( sublime_plugin.WindowCommand ):
+	""" The NppcCloseTabsLeftCommand class is licensed under the MIT License
+	and is derived from the ST2 CloseTabsLeft plugin by deXterbed
+	(https://github.com/deXterbed/CloseTabsLeft/blob/master/LICENSE). The license is as follows:
+	The MIT License (MIT)
+
+	Copyright (c) 2015 Manoj Mishra
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in all
+	copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+	SOFTWARE."""
+	def run( self ):
+		currentView = self.window.active_view()
+		for view in self.window.views():
+			if view.id() == currentView.id():
+				break
+			view.close()
 
 class NppcPluginTextCommand( sublime_plugin.TextCommand ):
 	def getOsSetting( self, key ):
@@ -25,34 +44,43 @@ class NppcPluginTextCommand( sublime_plugin.TextCommand ):
 		settings = sublime.load_settings( "SublimeNppContextPlugin.sublime-settings" )
 		osName = os.name
 		osPlatform = sys.platform
+		if osPlatform.startswith( "linux" ):
+			osPlatform = "linux"
+		elif osPlatform == "darwin":
+			osPlatform = "mac"
+		elif osName == "nt":
+			osPlatform = "windows"
 
-		result = settings.get( osName )
+		result = settings.get( osPlatform )
 		if result is not None:
-			result = result[osPlatform]
-			if result is not None:
-				result = result[key]
+			result = result[key]
 		
 		if result is None:
-			raise ValueError( "Settings not defined for " + osName + "/" + osPlatform + "/" + key )
+			raise ValueError( "Settings not defined for " + osPlatform + "/" + key )
 
 		return result
 
 	def runExternalCommand( self, commandTemplate, replacements = {} ):
-		if isinstance( commandTemplate, list ):
+		command = None
+		useShell = False
+		if "use_shell" in commandTemplate.keys():
+			useShell = commandTemplate["use_shell"]
+
+		if isinstance( commandTemplate["command"], list ):
 			command = []
-			for ( index, templateValue ) in enumerate( commandTemplate ):
+			for ( index, templateValue ) in enumerate( commandTemplate["command"] ):
 				value = templateValue
 				for replacement in replacements.keys():
 					if replacement in value:
 						value = value.replace( replacement, replacements[replacement] )
 				command.append( value )
-			subprocess.Popen( command, shell = False )
 		else:
-			command = "" + commandTemplate
+			command = "" + commandTemplate["command"]
 			for replacement in replacements.keys():
 				if replacement in command:
 						command = command.replace( replacement, replacements[replacement] )
-			subprocess.Popen( command, shell = False )
+
+		subprocess.Popen( command, shell = useShell )
 
 
 class NppcDeleteCommand( NppcPluginTextCommand ):
@@ -61,7 +89,6 @@ class NppcDeleteCommand( NppcPluginTextCommand ):
 		if currentFilePath:
 			send2trash( currentFilePath )
 			self.view.set_scratch( True )
-			self.window.focus_view( self.view )
 			self.view.close()
 
 	def is_enabled( self ):
