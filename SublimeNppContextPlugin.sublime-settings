@@ -1,0 +1,22 @@
+{
+	"posix": {
+		"linux": {
+			"file_explorer": [ "xdg-open", "<<PATH>>" ],
+			"terminal": "xterm -e \"cd \"<<PATH>>\" && /bin/bash\""
+		},
+		"linux2": {
+			"file_explorer": [ "xdg-open", "<<PATH>>" ],
+			"terminal": "xterm -e \"cd \"<<PATH>>\" && /bin/bash\""
+		},
+		"darwin": {
+			"file_explorer": "open -a \"/Applications/Finder.app\"",
+			"terminal": "open -a \"//Applications/Utilities/Terminal.app\""
+		}
+	},
+	"nt": {
+		"win32": {
+			"file_explorer" : [ "explorer.exe", "<<PATH>>" ],
+			"terminal" : "cmd.exe /K \"cd \"<<PATH>>\"\""
+		}
+	}
+}

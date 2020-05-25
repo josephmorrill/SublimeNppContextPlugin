@@ -1,0 +1,54 @@
+[
+	{ "caption" : "-" },
+	{
+		"caption" : "Close Tabs to the Left",
+		"command" : "close_tabs_left"
+	},
+	{
+		"caption" : "Save",
+		"command" : "save"
+	},
+	{
+		"caption" : "Save As...",
+		"command" : "prompt_save_as"
+	},
+	{
+		"id" : "nppc_rename",
+		"caption" : "Rename",
+		"command" : "rename_file"
+	},
+	{
+		"caption" : "Delete",
+		"command" : "nppc_delete"
+	},
+	{ "caption" : "-" },
+	{
+		"id" : "nppc_open_containing_folder_file_explorer",
+		"caption" : "Open containing folder in file explorer",
+		"command" : "nppc_open_containing_folder_file_explorer"
+	},
+	{
+		"id" : "nppc_open_containing_folder_terminal",
+		"caption" : "Open containing folder in terminal",
+		"command" : "nppc_open_containing_folder_terminal"
+	},
+	{
+		"id" : "nppc_open_default_viewer",
+		"caption" : "Open in default viewer",
+		"command" : "nppc_open_default_viewer"
+	},
+	{ "caption" : "-" },
+	{
+		"id" : "nppc_copy_file_path",
+		"caption" : "Copy file path",
+		"command" : "nppc_copy_file_path"
+	},
+	{
+		"caption" : "Copy filename",
+		"command" : "nppc_copy_filename"
+	},
+	{
+		"caption" : "Copy directory path",
+		"command" : "nppc_copy_directory_path"
+	}
+]
