@@ -38,6 +38,10 @@ class NppcCloseTabsLeftCommand( sublime_plugin.WindowCommand ):
 			view.close()
 
 class NppcPluginTextCommand( sublime_plugin.TextCommand ):
+	def getSetting( self, key ):
+		settings = sublime.load_settings( "SublimeNppContextPlugin.sublime-settings" )
+		return settings.get( key )
+
 	def getOsSetting( self, key ):
 		result = None
 
@@ -60,7 +64,7 @@ class NppcPluginTextCommand( sublime_plugin.TextCommand ):
 
 		return result
 
-	def runExternalCommand( self, commandTemplate, replacements = {} ):
+	def runExternalCommand( self, commandTemplate, replacements = {}, debug = False ):
 		command = None
 		useShell = False
 		if "use_shell" in commandTemplate.keys():
@@ -80,7 +84,21 @@ class NppcPluginTextCommand( sublime_plugin.TextCommand ):
 				if replacement in command:
 						command = command.replace( replacement, replacements[replacement] )
 
-		subprocess.Popen( command, shell = useShell )
+		externalProcess = subprocess.Popen( command, shell = useShell )
+		if debug:
+			externalCommand = externalProcess.args
+			if isinstance( externalCommand, list ):
+				externalCommand = " ".join( externalCommand )
+			print( "External command: " + externalCommand )
+
+	def buildReplacements( self, filePath ):
+		result = {}
+
+		result["<<FILE_PATH>>"] = filePath
+		result["<<FILE_NAME>>"] = os.path.basename( filePath )
+		result["<<DIR_PATH>>"] = os.path.dirname( filePath )
+
+		return result
 
 
 class NppcDeleteCommand( NppcPluginTextCommand ):
@@ -100,9 +118,8 @@ class NppcOpenContainingFolderFileExplorerCommand( NppcPluginTextCommand ):
 		if currentFilePath:
 			currentDirectoryPath = os.path.dirname( currentFilePath )
 			fileExplorerTemplate = self.getOsSetting( "file_explorer" )
-			self.runExternalCommand( fileExplorerTemplate, {
-				"<<PATH>>" : currentDirectoryPath
-			} )
+			debug = self.getSetting( "debug" )
+			self.runExternalCommand( fileExplorerTemplate, self.buildReplacements( currentFilePath ), debug = debug )
 
 	def is_enabled( self ):
 		return ( self.view.file_name() is not None )
@@ -111,11 +128,9 @@ class NppcOpenContainingFolderTerminalCommand( NppcPluginTextCommand ):
 	def run( self, edit ):
 		currentFilePath = self.view.file_name()
 		if currentFilePath:
-			currentDirectoryPath = os.path.dirname( currentFilePath )
 			terminalTemplate = self.getOsSetting( "terminal" )
-			self.runExternalCommand( terminalTemplate, {
-				"<<PATH>>" : currentDirectoryPath
-			} )
+			debug = self.getSetting( "debug" )
+			self.runExternalCommand( terminalTemplate, self.buildReplacements( currentFilePath ), debug = debug )
 
 	def is_enabled( self ):
 		return ( self.view.file_name() is not None )

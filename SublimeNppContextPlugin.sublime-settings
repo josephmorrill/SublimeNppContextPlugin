@@ -1,27 +1,28 @@
 {
+	"debug" : false,
 	"linux" : {
 		"file_explorer" : {
-			"command" : [ "xdg-open", "<<PATH>>" ]
+			"command" : [ "xdg-open", "<<FILE_PATH>>" ]
 		},
 		"terminal" : {
-			"command" : "gnome-terminal --working-directory=\"<<PATH>>\"",
+			"command" : "gnome-terminal --working-directory=\"<<DIR_PATH>>\"",
 			"use_shell" : true
 		}
 	},
 	"mac" : {
 		"file_explorer" : {
-			"command" : "open -a \"/Applications/Finder.app\" \"<<PATH>>\"",
+			"command" : [ "open", "-a", "/System/Library/CoreServices/Finder.app", "--args", "<<FILE_PATH>>" ]
 		},
 		"terminal" : {
-			"command" : "open -a \"//Applications/Utilities/Terminal.app\" \"<<PATH>>\""
+			"command" : [ "open", "-a", "/Applications/Utilities/Terminal.app", "--args", "<<DIR_PATH>>" ]
 		}
 	},
 	"windows" : {
 		"file_explorer" : {
-			"command" : [ "explorer.exe", "<<PATH>>" ]
+			"command" : "explorer.exe /select,\"<<FILE_PATH>>\""
 		},
 		"terminal" : {
-			"command" : "cmd.exe /K \"cd \"<<PATH>>\"\""
+			"command" : "cmd.exe /K \"cd \"<<DIR_PATH>>\"\""
 		}
 	}
 }
