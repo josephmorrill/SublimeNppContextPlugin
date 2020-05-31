@@ -5,8 +5,8 @@ import os
 import sys
 import subprocess
 
-class NppcCloseTabsLeftCommand( sublime_plugin.WindowCommand ):
-	""" The NppcCloseTabsLeftCommand class is licensed under the MIT License
+class NpptcCloseTabsLeftCommand( sublime_plugin.WindowCommand ):
+	""" The NpptcCloseTabsLeftCommand class is licensed under the MIT License
 	and is derived from the ST2 CloseTabsLeft plugin by deXterbed
 	(https://github.com/deXterbed/CloseTabsLeft/blob/master/LICENSE). The license is as follows:
 	The MIT License (MIT)
@@ -37,15 +37,15 @@ class NppcCloseTabsLeftCommand( sublime_plugin.WindowCommand ):
 				break
 			view.close()
 
-class NppcPluginTextCommand( sublime_plugin.TextCommand ):
+class NpptcPluginTextCommand( sublime_plugin.TextCommand ):
 	def getSetting( self, key ):
-		settings = sublime.load_settings( "SublimeNppContextPlugin.sublime-settings" )
+		settings = sublime.load_settings( "NppTabContext.sublime-settings" )
 		return settings.get( key )
 
 	def getOsSetting( self, key ):
 		result = None
 
-		settings = sublime.load_settings( "SublimeNppContextPlugin.sublime-settings" )
+		settings = sublime.load_settings( "NppTabContext.sublime-settings" )
 		osName = os.name
 		osPlatform = sys.platform
 		if osPlatform.startswith( "linux" ):
@@ -101,7 +101,7 @@ class NppcPluginTextCommand( sublime_plugin.TextCommand ):
 		return result
 
 
-class NppcDeleteCommand( NppcPluginTextCommand ):
+class NpptcDeleteCommand( NpptcPluginTextCommand ):
 	def run( self, edit ):
 		currentFilePath = self.view.file_name()
 		if currentFilePath:
@@ -112,7 +112,7 @@ class NppcDeleteCommand( NppcPluginTextCommand ):
 	def is_enabled( self ):
 		return ( self.view.file_name() is not None )
 
-class NppcOpenContainingFolderFileExplorerCommand( NppcPluginTextCommand ):
+class NpptcOpenContainingFolderFileExplorerCommand( NpptcPluginTextCommand ):
 	def run( self, edit ):
 		currentFilePath = self.view.file_name()
 		if currentFilePath:
@@ -124,7 +124,7 @@ class NppcOpenContainingFolderFileExplorerCommand( NppcPluginTextCommand ):
 	def is_enabled( self ):
 		return ( self.view.file_name() is not None )
 
-class NppcOpenContainingFolderTerminalCommand( NppcPluginTextCommand ):
+class NpptcOpenContainingFolderTerminalCommand( NpptcPluginTextCommand ):
 	def run( self, edit ):
 		currentFilePath = self.view.file_name()
 		if currentFilePath:
@@ -135,7 +135,7 @@ class NppcOpenContainingFolderTerminalCommand( NppcPluginTextCommand ):
 	def is_enabled( self ):
 		return ( self.view.file_name() is not None )
 
-class NppcOpenDefaultViewerCommand( NppcPluginTextCommand ):
+class NpptcOpenDefaultViewerCommand( NpptcPluginTextCommand ):
 	def run( self, edit ):
 		currentFilePath = self.view.file_name()
 		if currentFilePath:
@@ -149,7 +149,7 @@ class NppcOpenDefaultViewerCommand( NppcPluginTextCommand ):
 	def is_enabled( self ):
 		return ( self.view.file_name() is not None )
 
-class NppcCopyFilePathCommand( NppcPluginTextCommand ):
+class NpptcCopyFilePathCommand( NpptcPluginTextCommand ):
 	def run( self, edit ):
 		currentFilePath = self.view.file_name()
 		if currentFilePath:
@@ -158,7 +158,7 @@ class NppcCopyFilePathCommand( NppcPluginTextCommand ):
 	def is_enabled( self ):
 		return ( self.view.file_name() is not None )
 
-class NppcCopyFilenameCommand( NppcPluginTextCommand ):
+class NpptcCopyFilenameCommand( NpptcPluginTextCommand ):
 	def run( self, edit ):
 		currentFilePath = self.view.file_name()
 		if currentFilePath:
@@ -168,7 +168,7 @@ class NppcCopyFilenameCommand( NppcPluginTextCommand ):
 	def is_enabled( self ):
 		return ( self.view.file_name() is not None )
 
-class NppcCopyDirectoryPathCommand( NppcPluginTextCommand ):
+class NpptcCopyDirectoryPathCommand( NpptcPluginTextCommand ):
 	def run( self, edit ):
 		currentFilePath = self.view.file_name()
 		if currentFilePath:

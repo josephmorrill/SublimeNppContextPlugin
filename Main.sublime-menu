@@ -9,18 +9,18 @@
 				"children":
 				[
 					{
-						"caption": "Notepad++ Context",
+						"caption": "Notepad++ Tab Context",
 						"children":
 						[
 							{
 								"caption": "Settings – Default",
 								"command": "open_file",
-								"args": { "file": "${packages}/SublimeNppContextPlugin/SublimeNppContextPlugin.sublime-settings" }
+								"args": { "file": "${packages}/Notepad++ Tab Context/NppTabContext.sublime-settings" }
 							},
 							{
 								"caption": "Settings – User",
 								"command": "open_file",
-								"args": { "file": "${packages}/User/SublimeNppContextPlugin.sublime-settings" }
+								"args": { "file": "${packages}/User/NppTabContext.sublime-settings" }
 							}
 						]
 					}
