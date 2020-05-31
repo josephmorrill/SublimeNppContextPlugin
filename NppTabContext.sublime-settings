@@ -2,7 +2,8 @@
 	"debug" : false,
 	"linux" : {
 		"file_explorer" : {
-			"command" : [ "xdg-open", "<<FILE_PATH>>" ]
+			// Use [ "nautilus", "<<FILE_PATH>>" ] in Ubuntu to also select the file
+			"command" : [ "xdg-open", "<<DIR_PATH>>" ]
 		},
 		"terminal" : {
 			"command" : "gnome-terminal --working-directory=\"<<DIR_PATH>>\"",
