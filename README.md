@@ -2,22 +2,22 @@
 A Sublime Text 3 plugin that adds some useful commands from Notepad++:
 
 Added to tab context menu:
-- Close Tabs to the Left
-- Save
-- Save As...
-- Rename
-- Delete
-- Open containing folder in file explorer
-- Open containing folder in terminal
-- Open in default viewer
-- Copy file path
-- Copy filename
-- Copy directory path
+* Close Tabs to the Left
+* Save
+* Save As...
+* Rename
+* Delete
+* Open containing folder in file explorer
+* Open containing folder in terminal
+* Open in default viewer
+* Copy file path
+* Copy filename
+* Copy directory path
 
 Added to command palette:
-- Open containing folder in file explorer
-- Open containing folder in terminal
-- Open in default viewer
+* Open containing folder in file explorer
+* Open containing folder in terminal
+* Open in default viewer
 
 # Settings
 Depending on your setup, you may need to tweak the commands in the plugin settings to match your system's file explorer and terminal executables (especially on Linux systems).
