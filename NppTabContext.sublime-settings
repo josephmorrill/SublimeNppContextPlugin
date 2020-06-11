@@ -1,29 +1,49 @@
 {
-	"debug" : false,
-	"linux" : {
-		"file_explorer" : {
-			// Use [ "nautilus", "<<FILE_PATH>>" ] in Ubuntu to also select the file
-			"command" : [ "xdg-open", "<<DIR_PATH>>" ]
+	// To identify your system, open the command console (Ctrl + `) and enter
+	//     import os; import sys; print( os.name + "/" + sys.platform )
+	// Available variables:
+	//     filePath - full path to current file
+	//     fileName - filename of current file
+	//     dirPath - full path to current file's parent directory
+	"debug" : true,
+	"posix" : {
+		"linux" : {
+			"file_explorer" : {
+				// Use [ "nautilus", "${filePath}" ] in Ubuntu to also select the file
+				"command" : [ "xdg-open", "${dirPath}" ]
+			},
+			"terminal" : {
+				"command" : "gnome-terminal --working-directory=\"${dirPath}\"",
+				"use_shell" : true
+			}
 		},
-		"terminal" : {
-			"command" : "gnome-terminal --working-directory=\"<<DIR_PATH>>\"",
-			"use_shell" : true
+		"linux2" : {
+			"file_explorer" : {
+				// Use [ "nautilus", "${filePath}" ] in Ubuntu to also select the file
+				"command" : [ "xdg-open", "${dirPath}" ]
+			},
+			"terminal" : {
+				"command" : "gnome-terminal --working-directory=\"${dirPath}\"",
+				"use_shell" : true
+			}
+		},
+		"darwin" : {
+			"file_explorer" : {
+				"command" : [ "open", "-R", "${filePath}" ]
+			},
+			"terminal" : {
+				"command" : [ "open", "-a", "Terminal", "${dirPath}" ]
+			}
 		}
 	},
-	"mac" : {
-		"file_explorer" : {
-			"command" : [ "open", "-R", "<<FILE_PATH>>" ]
-		},
-		"terminal" : {
-			"command" : [ "open", "-a", "Terminal", "<<DIR_PATH>>" ]
-		}
-	},
-	"windows" : {
-		"file_explorer" : {
-			"command" : "explorer.exe /select,\"<<FILE_PATH>>\""
-		},
-		"terminal" : {
-			"command" : "cmd.exe /K \"cd \"<<DIR_PATH>>\"\""
+	"nt" : {
+		"win32" : {
+			"file_explorer" : {
+				"command" : "explorer.exe /select,\"${filePath}\""
+			},
+			"terminal" : {
+				"command" : "cmd.exe /K \"pushd \"${dirPath}\"\""
+			}
 		}
 	}
 }

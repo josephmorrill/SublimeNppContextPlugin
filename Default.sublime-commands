@@ -1,0 +1,22 @@
+[
+	{
+		"caption" : "Open containing folder in file explorer",
+		"command" : "npptc_open_containing_folder_file_explorer"
+	},
+	{
+		"caption" : "Open containing folder in terminal",
+		"command" : "npptc_open_containing_folder_terminal"
+	},
+	{
+		"caption" : "Open in default viewer",
+		"command" : "npptc_open_default_viewer"
+	},
+	{
+		"caption" : "Preferences: Notepad++ Tab Context",
+		"command" : "edit_settings",
+		"args" : {
+			"base_file" : "${packages}/Notepad++ Tab Context/NppTabContext.sublime-settings",
+			"default" : "{\n\t$0\n}\n"
+		}
+	}
+]

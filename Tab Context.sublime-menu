@@ -2,53 +2,97 @@
 	{ "caption" : "-" },
 	{
 		"caption" : "Close Tabs to the Left",
-		"command" : "npptc_close_tabs_left"
+		"command" : "npptc_close_tabs_left",
+		"args": {
+			"group": -1,
+			"index": -1
+		}
 	},
 	{
 		"caption" : "Save",
-		"command" : "save"
+		"command" : "save",
+		"args": {
+			"group": -1,
+			"index": -1
+		}
 	},
 	{
 		"caption" : "Save As...",
-		"command" : "prompt_save_as"
+		"command" : "prompt_save_as",
+		"args": {
+			"group": -1,
+			"index": -1
+		}
 	},
 	{
 		"id" : "npptc_rename",
 		"caption" : "Rename",
-		"command" : "rename_file"
+		"command" : "rename_file",
+		"args": {
+			"group": -1,
+			"index": -1
+		}
 	},
 	{
 		"caption" : "Delete",
-		"command" : "npptc_delete"
+		"command" : "npptc_delete",
+		"args": {
+			"group": -1,
+			"index": -1
+		}
 	},
 	{ "caption" : "-" },
 	{
 		"id" : "npptc_open_containing_folder_file_explorer",
 		"caption" : "Open containing folder in file explorer",
-		"command" : "npptc_open_containing_folder_file_explorer"
+		"command" : "npptc_open_containing_folder_file_explorer",
+		"args": {
+			"group": -1,
+			"index": -1
+		}
 	},
 	{
 		"id" : "npptc_open_containing_folder_terminal",
 		"caption" : "Open containing folder in terminal",
-		"command" : "npptc_open_containing_folder_terminal"
+		"command" : "npptc_open_containing_folder_terminal",
+		"args": {
+			"group": -1,
+			"index": -1
+		}
 	},
 	{
 		"id" : "npptc_open_default_viewer",
 		"caption" : "Open in default viewer",
-		"command" : "npptc_open_default_viewer"
+		"command" : "npptc_open_default_viewer",
+		"args": {
+			"group": -1,
+			"index": -1
+		}
 	},
 	{ "caption" : "-" },
 	{
 		"id" : "npptc_copy_file_path",
 		"caption" : "Copy file path",
-		"command" : "npptc_copy_file_path"
+		"command" : "npptc_copy_file_path",
+		"args": {
+			"group": -1,
+			"index": -1
+		}
 	},
 	{
 		"caption" : "Copy filename",
-		"command" : "npptc_copy_filename"
+		"command" : "npptc_copy_filename",
+		"args": {
+			"group": -1,
+			"index": -1
+		}
 	},
 	{
 		"caption" : "Copy directory path",
-		"command" : "npptc_copy_directory_path"
+		"command" : "npptc_copy_directory_path",
+		"args": {
+			"group": -1,
+			"index": -1
+		}
 	}
 ]
