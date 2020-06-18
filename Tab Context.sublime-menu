@@ -27,7 +27,7 @@
 	{
 		"id" : "npptc_rename",
 		"caption" : "Rename",
-		"command" : "rename_file",
+		"command" : "npptc_rename",
 		"args": {
 			"group": -1,
 			"index": -1

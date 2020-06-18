@@ -81,6 +81,23 @@ class NpptcPluginTextCommand( sublime_plugin.TextCommand ):
 				externalCommand = " ".join( externalCommand )
 			print( "External command: " + externalCommand )
 
+class NpptcRenameCommand( NpptcPluginTextCommand ):
+	def run( self, edit, group = -1, index = -1 ):
+		targetView = self.getTargetView( group, index )
+		oldFilePath = targetView.file_name()
+		if oldFilePath:
+			targetView.window().run_command( "prompt_save_as", {
+				"group" : group,
+				"index" : index
+			} )
+			try:
+				os.remove( oldFilePath )
+			except:
+				sublime.error_message( "Failed to delete old file (" + oldFilePath + ") - check Sublime console for error information" )
+
+	def is_enabled( self, group = -1, index = -1 ):
+		targetView = self.getTargetView( group, index )
+		return ( targetView.file_name() is not None )
 
 class NpptcDeleteCommand( NpptcPluginTextCommand ):
 	def run( self, edit, group = -1, index = -1 ):
